@@ -17,3 +17,20 @@ export async function getMapInfos(points: Point[]): Promise<ItemInfo[]> {
     photoUrl: "", // 필요시 URL
   }));
 }
+
+// ✅ 단건 조회 (lat/lng로)
+export async function getMapInfo(
+  lat: number,
+  lng: number,
+  opts?: { id?: string }
+): Promise<ItemInfo> {
+  const id = opts?.id ?? "single";
+  const [item] = await getMapInfos([{ id, lat, lng }]);
+  return item ?? { id, title: "", content: "", photoUrl: "" };
+}
+
+// (옵션) 단건: Point 그대로 받는 버전
+export async function getMapInfoByPoint(point: Point): Promise<ItemInfo> {
+  const [item] = await getMapInfos([point]);
+  return item ?? { id: point.id, title: "", content: "", photoUrl: "" };
+}
