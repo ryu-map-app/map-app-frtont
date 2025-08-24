@@ -1,11 +1,15 @@
 "use client";
 
+import DeleteMarkerButton from "@/components/info/DeleteMarkerButton"; // 경로만 맞춰줘
+
 export default function MarkerListItem({
+  markerId,                  // ⬅️ 추가
   title,
   content,
   photoUrl,
   loading = false,
 }: {
+  markerId?: string;         // ⬅️ 추가
   title?: string;
   content?: string;
   photoUrl?: string;
@@ -32,9 +36,15 @@ export default function MarkerListItem({
 
   return (
     <div className="rounded border bg-white p-2 text-xs">
-      <div className="text-sm font-semibold leading-tight truncate mb-2">
-        {t || "정보 불러오기 실패"}
+      {/* 타이틀 + 삭제 버튼 */}
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div className="text-sm font-semibold leading-tight truncate">
+          {t || "정보 불러오기 실패"}
+        </div>
+        {markerId && <DeleteMarkerButton markerId={markerId} />} {/* ⬅️ 추가 */}
       </div>
+
+      {/* 내용/사진 */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded border px-2 py-1 whitespace-pre-line break-words min-h-[48px]">
           {c || "정보 불러오기 실패"}
