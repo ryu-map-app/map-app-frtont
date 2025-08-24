@@ -1,6 +1,7 @@
 // components/marker/MarkersPanel.tsx
 "use client";
 import { useMarkerStore } from "@/store/useMarkerStore";
+import { GroupAutoCenter } from "../map/GroupAutoCenter";
 
 export default function MarkersPanel() {
   const list = useMarkerStore((s) => s.list);
@@ -11,6 +12,7 @@ export default function MarkersPanel() {
 
   return (
         <div className="rounded-lg border bg-white/90 shadow p-2">
+            <GroupAutoCenter />
             <div className="flex flex-col items-center gap-2">
             {list.map((g, idx) => {
                 const active = g.id === selectedId;

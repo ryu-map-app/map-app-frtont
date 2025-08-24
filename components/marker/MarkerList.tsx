@@ -54,6 +54,7 @@ export default function MarkerList() {
             return (
               <MarkerListItem
                 key={m.id}
+                markerId={m.id}   
                 loading={isPending && !info}
                 title={info?.title}
                 content={info?.content}
